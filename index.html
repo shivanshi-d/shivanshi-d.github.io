@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CogniCode</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Inter:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-maroon: #8B4B5C;
+            --deep-maroon: #6B3447;
+            --light-maroon: #A66B7A;
+            --dusty-rose: #A68B80;
+            --warm-beige: #C4A484;
+            --cream: #F5F1ED;
+            --soft-beige: #E8DDD4;
+            --charcoal: #2C2825;
+            --warm-gray: #5A5550;
+            --light-gray: #8B8680;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--charcoal);
+            background: var(--cream);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        header {
+            background: rgba(245, 241, 237, 0.95);
+            backdrop-filter: blur(20px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(139, 75, 92, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+        }
+
+        .logo {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: var(--primary-maroon);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--warm-gray);
+            font-weight: 400;
+            font-size: 0.95rem;
+            letter-spacing: 0.01em;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--primary-maroon);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-maroon);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+            min-height: calc(100vh - 80px);
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-maroon) 0%, var(--deep-maroon) 100%);
+            color: var(--cream);
+            padding: 8rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            background-size: 50px 50px;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            font-weight: 300;
+            letter-spacing: 0.01em;
+        }
+
+        .cta-button {
+            background: var(--cream);
+            color: var(--primary-maroon);
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 2px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            background: var(--soft-beige);
+        }
+
+        /* Card Grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin: 4rem 0;
+            padding: 0 2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 0;
+            padding: 3rem;
+            box-shadow: 0 8px 30px rgba(139, 75, 92, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            border: 1px solid rgba(139, 75, 92, 0.1);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-maroon) 0%, var(--dusty-rose) 100%);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(139, 75, 92, 0.15);
+        }
+
+        .card h3 {
+            font-family: 'DM Serif Display', serif;
+            color: var(--primary-maroon);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+        }
+
+        .card p {
+            color: var(--warm-gray);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .card .button {
+            background: var(--primary-maroon);
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+
+        .card .button:hover {
+            background: var(--deep-maroon);
+            transform: translateX(5px);
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            color: var(--primary-maroon);
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+        }
+
+        .section p {
+            font-size: 1.1rem;
+            color: var(--warm-gray);
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            text-align: center;
+            line-height: 1.8;
+        }
+
+        /* Extension Features */
+        .extension-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 0;
+            border-left: 4px solid var(--primary-maroon);
+            box-shadow: 0 5px 20px rgba(139, 75, 92, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateX(5px);
+            box-shadow: 0 10px 30px rgba(139, 75, 92, 0.15);
+        }
+
+        .feature h4 {
+            font-family: 'DM Serif Display', serif;
+            color: var(--primary-maroon);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            font-weight: 400;
+        }
+
+        .feature p {
+            color: var(--warm-gray);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Blog Posts */
+        .blog-post {
+            background: white;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 20px rgba(139, 75, 92, 0.08);
+            border: 1px solid rgba(139, 75, 92, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .blog-post:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(139, 75, 92, 0.15);
+        }
+
+        .blog-post h3 {
+            font-family: 'DM Serif Display', serif;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+            font-size: 1.6rem;
+            font-weight: 400;
+            line-height: 1.3;
+        }
+
+        .blog-post .date {
+            color: var(--light-gray);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        /* Blog Article Styles */
+        .blog-article {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 0;
+            box-shadow: 0 10px 40px rgba(139, 75, 92, 0.1);
+            border: 1px solid rgba(139, 75, 92, 0.1);
+            overflow: hidden;
+        }
+
+        .blog-article-header {
+            background: linear-gradient(135deg, var(--primary-maroon) 0%, var(--deep-maroon) 100%);
+            color: var(--cream);
+            padding: 4rem 3rem 3rem;
+            position: relative;
+        }
+
+        .blog-article-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            background-size: 30px 30px;
+            opacity: 0.2;
+        }
+
+        .blog-article-header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .blog-article h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .blog-article-meta {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .blog-article-meta .date {
+            font-size: 1rem;
+            font-weight: 300;
+        }
+
+        .blog-article-meta .author {
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        .blog-article-meta .reading-time {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .blog-back-button {
+            background: rgba(245, 241, 237, 0.2);
+            color: var(--cream);
+            padding: 0.8rem 1.5rem;
+            border: 1px solid rgba(245, 241, 237, 0.3);
+            border-radius: 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            font-size: 0.9rem;
+        }
+
+        .blog-back-button:hover {
+            background: rgba(245, 241, 237, 0.3);
+            transform: translateX(-5px);
+        }
+
+        .blog-article-content {
+            padding: 3rem;
+        }
+
+        .blog-article-content h2 {
+            font-family: 'DM Serif Display', serif;
+            color: var(--primary-maroon);
+            font-size: 2rem;
+            font-weight: 400;
+            margin: 2.5rem 0 1.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        .blog-article-content h3 {
+            font-family: 'DM Serif Display', serif;
+            color: var(--primary-maroon);
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin: 2rem 0 1rem;
+        }
+
+        .blog-article-content p {
+            color: var(--warm-gray);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .blog-article-content blockquote {
+            border-left: 4px solid var(--primary-maroon);
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+            background: var(--soft-beige);
+            font-style: italic;
+            color: var(--charcoal);
+        }
+
+        .blog-article-content ul, .blog-article-content ol {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+
+        .blog-article-content li {
+            color: var(--warm-gray);
+            margin-bottom: 0.5rem;
+            line-height: 1.7;
+        }
+
+        .blog-article-content strong {
+            color: var(--primary-maroon);
+            font-weight: 600;
+        }
+
+        .blog-article-content em {
+            color: var(--charcoal);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 0;
+            max-width: 700px;
+            margin: 3rem auto;
+            box-shadow: 0 10px 40px rgba(139, 75, 92, 0.1);
+            border: 1px solid rgba(139, 75, 92, 0.1);
+        }
+
+        .contact-form h2 {
+            font-family: 'DM Serif Display', serif;
+            color: var(--primary-maroon);
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            font-weight: 400;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            color: var(--charcoal);
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid rgba(139, 75, 92, 0.2);
+            border-radius: 0;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: var(--cream);
+            color: var(--charcoal);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-maroon);
+            background: white;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: white;
+            padding: 3rem;
+            margin: 3rem 0;
+            border-radius: 0;
+            border-left: 4px solid var(--primary-maroon);
+            box-shadow: 0 8px 30px rgba(139, 75, 92, 0.08);
+        }
+
+        .info-box h2, .info-box h3 {
+            font-family: 'DM Serif Display', serif;
+            color: var(--primary-maroon);
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        .info-box h2 {
+            font-size: 2rem;
+        }
+
+        .info-box h3 {
+            font-size: 1.5rem;
+        }
+
+        .info-box p {
+            color: var(--warm-gray);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-maroon);
+            color: var(--cream);
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero {
+                padding: 4rem 0;
+            }
+            
+            .card-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 0 1rem;
+            }
+            
+            .card {
+                padding: 2rem;
+            }
+            
+            .section {
+                padding: 3rem 0;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+
+            .blog-article-header {
+                padding: 3rem 2rem 2rem;
+            }
+
+            .blog-article-content {
+                padding: 2rem;
+            }
+
+            .blog-article-meta {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-maroon);
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: 0 5px 20px rgba(139, 75, 92, 0.1);
+                border-top: 1px solid rgba(139, 75, 92, 0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin-bottom: 1rem;
+            }
+        }
+
+        /* Specialty styling for workshop cards */
+        .workshop-card {
+            background: linear-gradient(135deg, var(--cream) 0%, white 100%);
+        }
+
+        .workshop-card ul {
+            margin: 1.5rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .workshop-card li {
+            margin-bottom: 0.5rem;
+            color: var(--warm-gray);
+        }
+
+        .workshop-card strong {
+            color: var(--primary-maroon);
+        }
+
+        /* Center content styling */
+        .center-content {
+            text-align: center;
+            margin: 4rem 0;
+            padding: 3rem;
+            background: white;
+            border-radius: 0;
+            box-shadow: 0 8px 30px rgba(139, 75, 92, 0.08);
+        }
+
+        .center-content h3 {
+            font-family: 'DM Serif Display', serif;
+            color: var(--primary-maroon);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            font-weight: 400;
+        }
+
+        .center-content p {
+            color: var(--warm-gray);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo" onclick="showPage('home')">CogniCode</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#" onclick="showPage('home')">Home</a></li>
+                <li><a href="#" onclick="showPage('mindshield')">MindShield</a></li>
+                <li><a href="#" onclick="showPage('workshops')">Workshops</a></li>
+                <li><a href="#" onclick="showPage('blog')">Blog</a></li>
+                <li><a href="#" onclick="showPage('policy')">Policy Briefs</a></li>
+                <li><a href="#" onclick="showPage('about')">About</a></li>
+                <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Home Page -->
+        <section id="home" class="page active">
+            <div class="hero">
+                <div class="container">
+                    <div class="hero-content">
+                        <h1>CogniCode</h1>
+                        <p>Empower youth to protect mental freedom and shape ethical AI through education, advocacy, and innovative technology.</p>
+                        <a href="#" class="cta-button" onclick="showPage('workshops')">Join Our Workshops</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="container">
+                <div class="card-grid">
+                    <div class="card">
+                        <h3>MindShield Extension</h3>
+                        <p>Our browser extension helps people identify and resist manipulation techniques in digital content, fostering critical evaluation skills.</p>
+                        <a href="#" class="button" onclick="showPage('mindshield')">Learn More</a>
+                    </div>
+                    <div class="card">
+                        <h3>Workshops</h3>
+                        <p>Interactive sessions for middle and elementary school students to develop critical thinking skills in an engaging environment. High Schoolers can lead programs!</p>
+                        <a href="#" class="button" onclick="showPage('workshops')">View Workshops</a>
+                    </div>
+                    <div class="card">
+                        <h3>Policy Research</h3>
+                        <p>Evidence-based policy briefs addressing AI and our society.</p>
+                        <a href="#" class="button" onclick="showPage('policy')">Read Briefs</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MindShield Extension Page -->
+        <section id="mindshield" class="page">
+            <div class="container">
+                <div class="section">
+                    <h1>MindShield Browser Extension</h1>
+                    <p>This AI-powered Chrome Extension detects manipulative design patterns and protects your cognitive freedom while browsing online.
+
+MindShield Focus Areas
+
+Education Over Restriction
+Empowers users to identify manipulation tactics across all websites.
+
+Real-Time Learning
+Encourages mindful navigation of challenging content while maintaining access to essential information and sites.
+
+Regaining Control
+By understanding mechanisms such as infinite scroll, phantom notifications, and emotional triggers, users reclaim the ability to choose how they interact with technology.
+
+Protecting Your Resources
+Awareness of these tactics enables protection of your time, mental energy, and decision-making autonomy.
+
+Make Informed Choices
+Recognizing manipulation patterns is the critical first step toward achieving digital freedom and intentional browsing.
+
+.</p>
+                    
+                    <div class="extension-features">
+                        <div class="feature">
+                            <h4>Content Analysis</h4>
+                            <p>Automatically detects potentially misleading content and provides educational context to help students make informed decisions.</p>
+                        </div>
+                        <div class="feature">
+                            <h4>Bias Detection</h4>
+                            <p>Identifies potential bias in news articles and opinion pieces, helping students recognize different perspectives.</p>
+                        </div>
+                        <div class="feature">
+                            <h4>Progress Tracking</h4>
+                            <p>Monitor your critical thinking development over time with detailed analytics and personalized feedback.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="center-content">
+                        <h3>Download From Chrome Web Store</h3>
+                        <p></p>
+                        <a href="https://chromewebstore.google.com/detail/mindshield-digital-wellbe/ehjjfofjnfhalaleelhbjjellbfhbfgm?pli=1" class="cta-button">Download</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Workshops Page -->
+        <section id="workshops" class="page">
+            <div class="container">
+                <div class="section">
+                    <h1>Educational Workshops</h1>
+                    <p>CogniCode offers engaging workshops designed to build critical thinking and digital literacy skills. Our programs are tailored for different age groups and learning objectives.</p>
+                    
+                    
+
+                        <div class="card workshop-card">
+                            <h3>🏫 Elementary School Program</h3>
+                            <p><strong>Grades:</strong> 3-5</p>
+                            <p><strong>Duration:</strong> 60-minute interactive sessions</p>
+                            <p><strong>Focus:</strong></p>
+                            <ul>
+This interactive workshop uses games, stories, and group activities to help kids understand how AI can influence their thoughts and feelings — and how to stay mindful and in control online.
+                            </ul>
+                            <p><strong>Format:</strong> Hands-on activities, group discussions, and real-world examples</p>
+                            <a href="#" class="button" onclick="showPage('contact')">Schedule Workshop</a>
+                        </div>
+                        <div class="card-grid">
+                         <div class="card workshop-card">
+                            <h3>🏫 Middle School Program</h3>
+                            <p><strong>Grades:</strong> 6-8</p>
+                            <p><strong>Duration:</strong> 60-minute interactive sessions</p>
+                            <p><strong>Focus:</strong></p>
+                            <ul>
+Students explore how AI systems work, how they shape attention and emotion, and how to push back through hands-on experiments, feed simulations, and youth-written tech policy proposals.                            </ul>
+                            <p><strong>Format:</strong> Hands-on activities, group discussions, and real-world examples</p>
+                            <a href="#" class="button" onclick="showPage('contact')">Schedule Workshop</a>
+                        </div>
+                        
+                        <div class="card workshop-card">
+                            <h3>🎓 High School Ambassador Program</h3>
+                            <p><strong>Grades:</strong> 9-12</p>
+                            <p><strong>Program Benefits:</strong></p>
+                            <ul>
+                                High school students can earn verified volunteer hours by leading workshops, mentoring younger peers, and helping build tools like MindShield or shape youth-driven tech policy initiatives.
+                            </ul>
+                            <p><strong>Application Process:</strong> Send us an email!</p>
+                            <a href="#" class="button" onclick="showPage('contact')">Apply Now</a>
+                        </div>
+                    </div>
+                    
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Page -->
+        <section id="blog" class="page">
+            <div class ="container">
+                <div class="section">
+                    <h1>Our Blog</h1>
+                    <p>Stay updated with the latest insights on AI ethics, digital literacy, and youth empowerment.</p>
+                    
+                    <div class="blog-post">
+                        <h3>Originality in the Age of AI</h3>
+                        <div class="date">May 15, 2025</div>
+                        <p>Shivanshi Dutt discusses the changing meaning of originality in the era of generative AI and how the relationship between technology and human creativity might shift over time.</p>
+                        <a href="#" class="button" onclick="showBlogPost('ai-manipulation')">Read More</a>
+                    </div>
+                    
+                    <!-- <div class="blog-post">
+                        <h3>Building Critical Thinking Skills in the Digital Age</h3>
+                        <div class="date">February 28, 2024</div>
+                        <p>A comprehensive guide for educators and parents on fostering analytical thinking in young people navigating online spaces.</p>
+                        <a href="#" class="button" onclick="showBlogPost('critical-thinking')">Read More</a>
+                    </div>
+                    
+                    <div class="blog-post">
+                        <h3>The Future of Digital Literacy Education</h3>
+                        <div class="date">February 10, 2024</div>
+                        <p>How schools and communities can prepare students for an increasingly AI-integrated world while preserving human agency.</p>
+                        <a href="#" class="button" onclick="showBlogPost('digital-literacy')">Read More</a>
+                    </div> -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Individual Blog Posts -->
+        <section id="blog-ai-manipulation" class="page blog-article">
+            <div class="blog-article-header">
+                <div class="container">
+                    <div class="blog-article-header-content">
+                        <a href="#" class="blog-back-button" onclick="showPage('blog')">← Back to Blog</a>
+                        <h1>Originality in the Age of AI</h1>
+                        <div class="blog-article-meta">
+                            <span class="date">May 15, 2024</span>
+                            <span class="author">By Shivanshi Dutt</span>
+                            <span class="reading-time">9 min read</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="blog-article-content">
+                <p>We have entered an era that can produce chart-topping songs without human emotion but simply from algorithms, rendering impressive pieces of art indistinguishable from human-created work. In 2023, an AI-generated image called “Théâtre D’opéra Spatial” won a state-wide art competition in Colorado, sparking outrage and confusion on what counts as art. AI-composed music is also increasingly finding ways onto streaming platforms that millions can listen to. Successful start-ups like Udio and Suno are beginning to signify a greater shift in public sentiment about whether the creator makes art any more meaningful or not. Users of the Suno platform have artist pages with songs created with nothing more than sensible prompts. With no point of derivation, our conceptual understanding of authorship is becoming more difficult to define. This reality poses a difficult question for students and creators: what is creativity? While we approach the question of originality in an automated world from a futuristic perspective, generative AI is beginning to change our understanding and relationship with creativity as of right now.
+
+Hearing AI-generated music samples from Udio for the first time left me surprised as well as unsettled. Samples of Soul, New Folk, and Dad Rock sound eerily similar to songs playing on the radio, stopping not just at instrumentals but adding versatile and poetic lyricism and vocals. If someone can create a listen-worthy song by typing out a prompt and clicking “Generate”, where does human creativity fit into this new landscape?
+
+Contemporary generative AI models like GPT-4, DALL-E3 and specific audio models belonging to individual startups use techniques called “diffusion”, which allows the models to learn and train on complex patterns of millions of music samples. With no credit or acknowledgment of the authors of these music samples, these AI systems transform billions of creative works into patterns without consent or compensation to the original creators. The accessible nature of these music-generating tools raises the possibility of devaluing the labor and vision of human creators. Platforms like Udio and Suno market themselves as providing a place for unlimited creativity but don’t provide an alternative space to support human artistic innovation.
+
+In some ways, AI and human creators have similar paths that in the sense they synthesize and remix ideas. While humans absorb experiences and influences to express something, AI analyzes datasets and identifies patterns. Dr. Rebecca Saxe, a cognitive neuroscientist at MIT states: “Human creativity involves the interplay between explicit and implicit cognitive systems–conscious thought and subconscious processing working in tandem. This integration allows us to break patterns rather than merely produce them.” When humans create, we infuse our work with emotion, paradoxes, memories, and history. We create art as a form of processing the world around us as well as our internal environment.
+
+Can generative AI truly do this? According to Margaret Bode, a research professor of cognitive science, there are three forms of creativity: combinational (which makes unlikely connections), exploratory (developing under existing rules), and transformational (changing the rules themselves). While AI is currently excelling in the first two types, it lags behind the third, in which human creativity succeeds and remains elusive to machines.
+
+The rise of generative AI raises concerns about how we value creative work. Is it about the deeper sense of purpose behind it or in what magnitude can the piece of art be enjoyed? Stock photo services like Getty Images and Shutterstock offer AI-generated images at a minuscule cost compared to hiring human photographers. Music licensing programs have begun to capitalize on AI compositions as well as those of human composers.  In a 2024 economic analysis from the World Economic Forum, creative industries can see 30% of entry-level creative jobs completely changed or eliminated by the usage of generative AI, limiting the career and creative pathways for emerging artists and creators.
+
+Cultural theorist Dr. Safiya Noble discusses: “When AI systems train on existing cultural works, they often amplify dominant perspectives while marginalizing others. We risk a homogenization of creative expression if we don’t carefully consider whose creative traditions get encoded and amplified through these technologies.” Certain demographics might gain more cultural importance and “normalcy” given the datasets that models get trained on. With the increasing use of generative AI, there is a deeper concern about whose cultural expression gets prioritized in our digital tools. This risk isn’t just about homogenization but the subtle erasure of cultural perspectives that already struggle for representation in the digital world.
+
+Ideally, AI developers should focus on automating tasks that are tedious for humans to find new ways to support humanity in terms of health, sustainability, and assisting us with problem-solving instead of tackling our outlets of human expression. On a more personal level, creativity in the future might not be about proving our superiority as a human race but about preserving the reasons why we create. Chord progressions on the piano, scribbled thoughts, and hasty sketches are all creative in ways that precise and pattern-driven ways AI isn’t. AI can change our relationship to how we create, which is a problem that we must bring more attention to, but AI has yet to change the why behind our creation, and that is a quality we must preserve fiercely.</p>
+            </div>
+        </section>
+
+        <section id="blog-critical-thinking" class="page blog-article">
+            <div class="blog-article-header">
+                <div class="container">
+                    <div class="blog-article-header-content">
+                        <a href="#" class="blog-back-button" onclick="showPage('blog')">← Back to Blog</a>
+                        <h1>Building Critical Thinking Skills in the Digital Age</h1>
+                        <div class="blog-article-meta">
+                            <span class="date">February 28, 2024</span>
+                            <span class="author">By CogniCode Team</span>
+                            <span class="reading-time">10 min read</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="blog-article-content">
+                <p>Critical thinking has never been more important—or more challenging to develop. In an era where information flows faster than ever and AI systems shape much of what we see online, young people need sophisticated skills to navigate digital spaces effectively.</p>
+
+                <h2>What Makes Digital Critical Thinking Different?</h2>
+                <p>Traditional critical thinking focused on evaluating static sources—books, newspapers, academic papers. Digital critical thinking requires understanding dynamic, personalized, and algorithmically-mediated information environments.</p>
+
+                <p>Students today must learn to question not just the content they see, but why they're seeing it, how it was selected for them, and what other perspectives might be hidden from view.</p>
+
+                <h3>Core Skills for Digital Citizens</h3>
+                <ul>
+                    <li><strong>Algorithmic Awareness:</strong> Understanding how AI systems curate and prioritize information</li>
+                    <li><strong>Source Triangulation:</strong> Actively seeking multiple perspectives on important topics</li>
+                    <li><strong>Emotional Regulation:</strong> Recognizing when content is designed to trigger specific emotions</li>
+                    <li><strong>Data Literacy:</strong> Understanding how personal data influences what information we receive</li>
+                </ul>
+
+                <h2>Practical Strategies for Educators</h2>
+                <p>Building these skills requires moving beyond traditional approaches to media literacy education.</p>
+
+                <blockquote>
+                    "Students learn best when they can experiment with and manipulate the systems they're studying. Abstract lessons about 'fake news' are far less effective than hands-on exploration of how algorithms work."
+                </blockquote>
+
+                <h3>Interactive Learning Approaches</h3>
+                <p><strong>Algorithm Simulations:</strong> Have students role-play as social media algorithms, making decisions about what content to show different users. This experiential learning helps them understand the decision-making processes behind their feeds.</p>
+
+                <p><strong>Perspective Challenges:</strong> Assign students to research controversial topics from multiple viewpoints, then discuss how different information sources led to different conclusions.</p>
+
+                <p><strong>Digital Detox Experiments:</strong> Guide students through periods of mindful technology use, helping them notice how their thinking and mood change when they alter their digital consumption habits.</p>
+
+                <h2>Supporting Parents and Families</h2>
+                <p>Critical thinking development doesn't stop at the classroom door. Families play a crucial role in modeling and reinforcing these skills.</p>
+
+                <p>Parents can start conversations about the technology their children use: "I noticed you spent a lot of time on that app today. What kinds of things was it showing you? Did you notice any patterns?"</p>
+
+                <p>Rather than imposing restrictions, focus on building awareness and agency. When young people understand how technology affects them, they're more likely to make healthy choices independently.</p>
+
+                <h2>The Broader Context</h2>
+                <p>Digital critical thinking isn't just about individual protection—it's about preserving democratic discourse and social cohesion. When citizens can evaluate information effectively, they're less susceptible to manipulation and more capable of productive disagreement.</p>
+
+                <p>This work is especially crucial for young people, who will inherit the long-term consequences of how our society adapts to AI and algorithmic systems.</p>
+
+                <h2>Getting Started</h2>
+                <p>Whether you're an educator, parent, or community leader, you can begin fostering digital critical thinking today:</p>
+
+                <ul>
+                    <li>Model curiosity about how technology works</li>
+                    <li>Ask questions about the information sources you encounter</li>
+                    <li>Create opportunities for young people to experiment with different approaches to digital consumption</li>
+                    <li>Focus on building agency rather than imposing rules</li>
+                </ul>
+
+                <p>The goal isn't to create a generation that fears technology, but one that uses it thoughtfully and intentionally. When young people understand how AI systems work, they can harness their benefits while preserving their own autonomy and critical thinking abilities.</p>
+            </div>
+        </section>
+
+        <section id="blog-digital-literacy" class="page blog-article">
+            <div class="blog-article-header">
+                <div class="container">
+                    <div class="blog-article-header-content">
+                        <a href="#" class="blog-back-button" onclick="showPage('blog')">← Back to Blog</a>
+                        <h1>The Future of Digital Literacy Education</h1>
+                        <div class="blog-article-meta">
+                            <span class="date">February 10, 2024</span>
+                            <span class="author">By CogniCode Team</span>
+                            <span class="reading-time">12 min read</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="blog-article-content">
+                <p>As artificial intelligence becomes increasingly integrated into every aspect of digital life, our approach to digital literacy education must evolve. Traditional models focused on basic computer skills and simple source evaluation are no longer sufficient for navigating an AI-mediated world.</p>
+
+                <h2>The Changing Landscape</h2>
+                <p>Today's students are growing up in an environment where AI systems make thousands of decisions about what they see, whom they connect with, and what opportunities they encounter. This represents a fundamental shift in how information and social interaction work.</p>
+
+                <p>Unlike previous generations who could learn to "use" technology as a tool, today's young people must learn to coexist with AI systems that actively shape their thoughts and behaviors.</p>
+
+                <h3>Key Challenges</h3>
+                <ul>
+                    <li><strong>Invisible Influence:</strong> AI systems often work behind the scenes, making their impact difficult to detect and understand</li>
+                    <li><strong>Rapid Evolution:</strong> The technological landscape changes faster than educational curricula can adapt</li>
+                    <li><strong>Complexity:</strong> Modern AI systems are too complex for most people to understand in technical detail</li>
+                    <li><strong>Ubiquity:</strong> AI influence extends far beyond obvious applications like social media or search</li>
+                </ul>
+
+                <h2>A New Framework for Digital Literacy</h2>
+                <p>Effective digital literacy education for the AI age must be built on three foundational principles:</p>
+
+                <blockquote>
+                    "Digital literacy in the AI age isn't about understanding how to code algorithms—it's about understanding how algorithms code us."
+                </blockquote>
+
+                <h3>1. Systems Thinking</h3>
+                <p>Students need to understand how AI systems fit into broader technological, economic, and social structures. This means learning about business models, data flows, and the incentives that drive technological development.</p>
+
+                <p>Rather than focusing solely on individual tools or platforms, education should help students see the interconnected nature of digital systems and how their choices in one area affect their experiences in others.</p>
+
+                <h3>2. Agency Development</h3>
+                <p>The goal isn't to make students afraid of AI, but to help them develop genuine agency in their interactions with these systems. This requires both understanding and practical skills.</p>
+
+                <p>Students should learn to:</p>
+                <ul>
+                    <li>Recognize when AI systems are influencing their choices</li>
+                    <li>Understand the trade-offs involved in different technological choices</li>
+                    <li>Develop strategies for maintaining autonomy while benefiting from AI capabilities</li>
+                    <li>Advocate for their interests in digital spaces</li>
+                </ul>
+
+                <h3>3. Ethical Reasoning</h3>
+                <p>As AI systems become more powerful, the ethical dimensions of technology use become more complex. Students need frameworks for thinking through difficult questions about privacy, manipulation, fairness, and social impact.</p>
+
+                <p>This isn't about providing simple answers, but about developing the capacity for nuanced ethical reasoning in rapidly changing contexts.</p>
+
+                <h2>Practical Implementation</h2>
+                <p>How can schools and communities put these principles into practice?</p>
+
+                <h3>Curriculum Integration</h3>
+                <p>Digital literacy shouldn't be confined to computer science classes. These concepts should be woven throughout the curriculum:</p>
+
+                <ul>
+                    <li><strong>Social Studies:</strong> Examining how AI affects democracy, social movements, and civic participation</li>
+                    <li><strong>English:</strong> Analyzing how algorithms shape narrative and influence interpretation</li>
+                    <li><strong>Mathematics:</strong> Understanding statistical concepts that underlie AI decision-making</li>
+                    <li><strong>Science:</strong> Exploring the environmental and social impacts of technological systems</li>
+                </ul>
+
+                <h3>Experiential Learning</h3>
+                <p>Students learn best when they can experiment with the systems they're studying. This might involve:</p>
+
+                <ul>
+                    <li>Creating their own simple algorithms to understand how AI systems make decisions</li>
+                    <li>Conducting experiments with different privacy settings and observing how their online experiences change</li>
+                    <li>Analyzing their own data to understand what AI systems might infer about them</li>
+                    <li>Role-playing exercises that help them understand different stakeholder perspectives</li>
+                </ul>
+
+                <h2>The Role of Community</h2>
+                <p>Schools alone cannot provide comprehensive digital literacy education. This work requires collaboration between educators, parents, technology companies, and community organizations.</p>
+
+                <p>Parents and caregivers need support in understanding these issues themselves so they can guide their children effectively. Community organizations can provide spaces for intergenerational learning and dialogue about technology's role in society.</p>
+
+                <h2>Preparing for Uncertainty</h2>
+                <p>Perhaps most importantly, digital literacy education must prepare students for a future we cannot fully predict. Rather than teaching specific responses to current technologies, we need to develop adaptable thinking skills and ethical frameworks that can guide decision-making as technology continues to evolve.</p>
+
+                <p>This means fostering curiosity, critical thinking, and moral reasoning—capabilities that will serve students well regardless of what technological changes lie ahead.</p>
+
+                <h2>A Call to Action</h2>
+                <p>The window for shaping how AI integrates into human society is narrowing. The students in our classrooms today will be the leaders, innovators, and citizens who determine whether AI enhances human flourishing or undermines it.</p>
+
+                <p>We have an opportunity—and a responsibility—to prepare them for this role. This requires moving beyond traditional approaches to digital literacy and embracing the complexity and urgency of our current moment.</p>
+
+                <p>The future of human agency in digital spaces depends on the choices we make in education today. Let's make sure we choose wisely.</p>
+            </div>
+        </section>
+
+        <!-- Policy Briefs Page -->
+        <section id="policy" class="page">
+            <div class="container">
+                <div class="section">
+                    <h1>Policy Research & Briefs</h1>
+                    <p>Evidence-based policy recommendations for protecting youth digital rights and promoting ethical AI development.</p>
+                    
+                    <div class="info-box">
+                        <h2>Current Focus Areas</h2>
+                        <h3>Youth Digital Rights</h3>
+                        <p>Advocating for legislation that protects young people from manipulative design while preserving their access to information and educational resources.</p>
+                        
+                        <h3>Educational Technology Standards</h3>
+                        <p>Developing frameworks for evaluating and implementing AI-powered educational tools that enhance rather than replace critical thinking development.</p>
+                        
+                        <h3>Algorithmic Transparency</h3>
+                        <p>Pushing for greater transparency in how AI systems make decisions that affect young people's access to information, opportunities, and social connections.</p>
+                    </div>
+                    
+                    <!-- <div class="blog-post">
+                        <h3>Protecting Youth from Manipulative AI: A Policy Framework</h3>
+                        <div class="date">March 2024</div>
+                        <p>A comprehensive analysis of current regulatory approaches and recommendations for protecting young people from AI manipulation while preserving beneficial applications.</p>
+                        <a href="#" class="button">Download PDF</a>
+                    </div>
+                    
+                    <div class="blog-post">
+                        <h3>Digital Literacy Standards for the AI Age</h3>
+                        <div class="date">February 2024</div>
+                        <p>Proposed educational standards that prepare students to thrive in an AI-integrated world while maintaining their cognitive autonomy.</p>
+                        <a href="#" class="button">Download PDF</a>
+                    </div>
+                    
+                    <div class="center-content">
+                        <h3>Collaborate with Us</h3>
+                        <p>We work with policymakers, educators, and advocacy organizations to develop evidence-based approaches to AI governance.</p>
+                        <a href="#" class="cta-button" onclick="showPage('contact')">Get Involved</a>
+                    </div> -->
+                </div>
+            </div>
+        </section>
+
+        <!-- About Page -->
+        <section id="about" class="page">
+            <div class="container">
+                <div class="section">
+                    <h1>About CogniCode :)</h1>
+                    <p>CogniCode is dedicated to empowering students with the critical thinking skills and digital literacy necessary to navigate an increasingly complex information landscape. We believe that in the age of AI and digital manipulation, the ability to think critically and evaluate information independently is not just valuable. This is essential for maintaining human autonomy and democratic society.</p>
+                    
+                    <div class="info-box">
+                        <h2>Our Mission</h2>
+                        <p>To empower youth with the knowledge, skills, and tools needed to maintain their cognitive autonomy in an AI-integrated world. We believe that understanding how AI systems work is the foundation for using them wisely and ethically.</p>
+                    </div>
+                    
+                    <div class="info-box">
+                        <h2>Our Approach</h2>
+                        <p>Rather than promoting fear or avoidance of AI technology, we focus on building genuine understanding and practical agency. Our programs emphasize hands-on learning, critical thinking development, and ethical reasoning.</p>
+                        
+                        <h3>Core Principles</h3>
+                        <p><strong>Education Over Restriction:</strong> We believe young people need to understand the technology that they are growing up with.</p>
+                        
+                        <p><strong>Practical Agency:</strong> Our goal is to develop real-world skills that students can apply immediately in their digital lives.</p>
+                        
+                        <p><strong>Ethical Technology Use:</strong> We promote approaches to AI that enhance rather than replace human capabilities and judgment.</p>
+                        
+                        <p><strong>Community-Centered:</strong> We work with schools, families, and communities to create supportive environments.</p>
+                    </div>
+                    
+                    <div class="info-box">
+                        <h2>Our Team</h2>
+                        <p>CogniCode is led by high schoolers passionate about responsible AI and its direct effects on people.</p>
+                        
+                        <p>We work closely with students, teachers, parents, and community leaders to ensure our programs address real needs and create meaningful impact.</p>
+                    </div>
+                    
+                    <div class="center-content">
+                        <h3>Join Our Mission</h3>
+                        <p>Whether you're an educator, parent, student, or community leader, there are many ways to get involved with CogniCode's work.</p>
+                        <a href="#" class="cta-button" onclick="showPage('contact')">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Page -->
+        <section id="contact" class="page">
+            <div class="container">
+                <div class="section">
+                    <h1>Contact Us</h1>
+                    <p>Feel free to reach out about workshops, policy briefs, or any questions you might have!</p>
+                    
+                    <div class="contact-form">
+                        <h2>Get in Touch</h2>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="organization">Organization (Optional)</label>
+                            <input type="text" id="organization" name="organization">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="interest">I'm interested in:</label>
+                            <select id="interest" name="interest" required>
+                                <option value="">Select an option</option>
+                                <option value="workshop">Scheduling a workshop</option>
+                                <option value="ambassador">Ambassador program</option>
+                                <option value="partnership">Partnership opportunities</option>
+                                <option value="policy">Policy collaboration</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="cta-button" onclick="submitForm()">Send Message</button>
+                    </div>
+                    
+                    <div class="info-box">
+                        <h2>Other Ways to Connect</h2>
+                        <p><strong>Email:</strong> duttshivanshi@gmail.com</p>                        
+                        <p><strong>Insta:</strong> @projectautonomy.ai</p>                       
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>CogniCode.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Page Navigation
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Show selected page
+            const selectedPage = document.getElementById(pageId);
+            if (selectedPage) {
+                selectedPage.classList.add('active');
+            }
+            
+            // Close mobile menu if open
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.remove('active');
+        }
+
+        // Blog post navigation
+        function showBlogPost(postId) {
+            showPage('blog-' + postId);
+        }
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Form submission
+        function submitForm() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            if (name && email && message) {
+                alert('Thank you for your message! We\'ll get back to you within 2-3 business days.');
+                // Reset form
+                document.getElementById('name').value = '';
+                document.getElementById('email').value = '';
+                document.getElementById('organization').value = '';
+                document.getElementById('interest').value = '';
+                document.getElementById('message').value = '';
+            } else {
+                alert('Please fill in all required fields.');
+            }
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('nav');
+            const navLinks = document.getElementById('navLinks');
+            const mobileBtn = document.querySelector('.mobile-menu-btn');
+            
+            if (!nav.contains(event.target) && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // Handle browser back/forward buttons
+        window.addEventListener('popstate', function(event) {
+            if (event.state && event.state.page) {
+                showPage(event.state.page);
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set initial page state
+            history.replaceState({page: 'home'}, '', '#home');
+        });
+    </script>
+</body>
+</html>
