@@ -55,10 +55,21 @@
         }
 
         .logo-icon {
-            width: 36px;
-            height: 36px;
+            width: 36px; height: 36px;
+            background: var(--primary-maroon);
             border-radius: 8px;
-            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .logo-icon::before {
+            content: '';
+            width: 16px; height: 16px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
         }
 
         .logo {
@@ -718,7 +729,7 @@
     <header>
         <nav class="container">
             <a href="#" class="logo-container" onclick="showPage('home'); return false;">
-                <img class="logo-icon" src="1764711217820-5f5a4285-6bf7-43de-b0d4-18a712d5173f_1.png" alt="CogniCode logo">
+                <div class="logo-icon"></div>
                 <span class="logo">CogniCode</span>
             </a>
             <ul class="nav-links" id="navLinks">
@@ -869,12 +880,12 @@
 
                     <div class="extension-gallery">
                         <div class="gallery-main">
-                            <img id="galleryMainImg" src="mindshield1.jpg" alt="MindShield showing cognitive risk score of 80 on Instagram">
+                            <img id="galleryMainImg" src="mindshield1.png" alt="MindShield showing cognitive risk score of 80 on Instagram">
                         </div>
                         <div class="gallery-thumbs">
-                            <img src="mindshield1.jpg" alt="Cognitive Risk Score" class="gallery-thumb active" onclick="setGalleryImg(this, 'MindShield showing cognitive risk score of 80 on Instagram')">
-                            <img src="mindshield2.jpg" alt="Chrome Web Store listing" class="gallery-thumb" onclick="setGalleryImg(this, 'MindShield on the Chrome Web Store')">
-                            <img src="mindshield3.jpg" alt="Detected patterns list" class="gallery-thumb" onclick="setGalleryImg(this, 'MindShield showing all detected manipulation patterns')">
+                            <img src="mindshield1.png" alt="Cognitive Risk Score" class="gallery-thumb active" onclick="setGalleryImg(this, 'MindShield showing cognitive risk score of 80 on Instagram')">
+                            <img src="mindshield2.png" alt="Chrome Web Store listing" class="gallery-thumb" onclick="setGalleryImg(this, 'MindShield on the Chrome Web Store')">
+                            <img src="mindshield3.png" alt="Detected patterns list" class="gallery-thumb" onclick="setGalleryImg(this, 'MindShield showing all detected manipulation patterns')">
                         </div>
                     </div>
 
@@ -909,7 +920,7 @@
                         </div>
 
                         <div class="card workshop-card">
-                            <img src="DSCN0104.jpeg" alt="High School Ambassadors">
+                            <img src="DSCN0098.jpeg" alt="High School Ambassadors">
                             <h3>High School Chapter Program</h3>
                             <p><strong>Grades:</strong> 9-12</p>
                             <p><strong>Join CogniCode!</strong></p>
@@ -1066,7 +1077,7 @@
 
                     <div class="info-box">
                         <h2>Other Ways to Connect</h2>
-                        <!-- <p><strong>Email:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f5969a929b9c969a9190db9a8792b59298949c99db969a98">[email&#160;protected]</a></p> -->
+                        <p><strong>Email:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f5969a929b9c969a9190db9a8792b59298949c99db969a98">[email&#160;protected]</a></p>
                         <p><strong>Instagram:</strong> @cogni.code</p>
                         <p><strong>CogniNotes:</strong> <a href="https://cogninotes.substack.com" target="_blank" style="color: var(--primary-maroon); text-decoration: underline;">CogniNotes on Substack</a></p>
                     </div>
@@ -1094,7 +1105,7 @@
                     <a href="#" onclick="showPage('about'); return false;">About Us</a>
                     <a href="#" onclick="showPage('contact'); return false;">Contact</a>
                     <a href="https://www.instagram.com/cogni.code/" target="_blank">Instagram</a>
-                    <!-- <a href="/cdn-cgi/l/email-protection#e3808c848d8a808c8786cd8c9184a3848e828a8fcd808c8e">Email Us</a> -->
+                    <a href="/cdn-cgi/l/email-protection#e3808c848d8a808c8786cd8c9184a3848e828a8fcd808c8e">Email Us</a>
                 </div>
             </div>
         </div>
