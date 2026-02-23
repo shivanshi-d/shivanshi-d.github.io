@@ -1210,7 +1210,7 @@ As a student leader and writer on tech policy, she launched CogniCode after reco
             <div class="container">
                 <div class="section">
                     <h1>Get in Touch</h1>
-                    <p>Have questions about our workshops, extension, or want to partner with us? Feel free to reach out to us!p>
+                    <p>Have questions about our workshops, extension, or want to partner with us? Feel free to reach out to us!</p>
                     
                     <div class="contact-form">
                         <h2>Send Us a Message</h2>
@@ -1376,4 +1376,9 @@ As a student leader and writer on tech policy, she launched CogniCode after reco
 
         // Close mobile menu when clicking outside
         document.addEventListener('click', function(event) {
-            const nav = document.querySelector('na
+            const nav = document.querySelector('nav');
+            const navLinks = document.getElementById('navLinks');
+            if (!nav.contains(event.target)) {
+                navLinks.classList.remove('active');
+            }
+        });
