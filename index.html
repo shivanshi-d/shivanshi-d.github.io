@@ -6,11 +6,7 @@
     <title>CogniCode</title>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Spectral:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
             --primary-maroon: #8B4B5C;
@@ -33,19 +29,12 @@
             overflow-x: hidden;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
 
-        /* Header */
         header {
             background: white;
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             z-index: 1000;
             box-shadow: 0 2px 20px rgba(139, 75, 92, 0.08);
             transition: all 0.3s ease;
@@ -66,8 +55,7 @@
         }
 
         .logo-icon {
-            width: 36px;
-            height: 36px;
+            width: 36px; height: 36px;
             background: var(--primary-maroon);
             border-radius: 8px;
             display: flex;
@@ -78,8 +66,7 @@
 
         .logo-icon::before {
             content: '';
-            width: 16px;
-            height: 16px;
+            width: 16px; height: 16px;
             background: white;
             border-radius: 50%;
             position: absolute;
@@ -112,57 +99,25 @@
         .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
+            bottom: -5px; left: 0;
+            width: 0; height: 2px;
             background: var(--primary-maroon);
             transition: width 0.3s ease;
         }
 
-        .nav-links a:hover {
-            color: var(--primary-maroon);
-        }
+        .nav-links a:hover { color: var(--primary-maroon); }
+        .nav-links a:hover::after { width: 100%; }
 
-        .nav-links a:hover::after {
-            width: 100%;
-        }
+        main { margin-top: 70px; }
 
-        .donate-button {
-            background: var(--primary-maroon);
-            color: white;
-            padding: 0.7rem 1.5rem;
-            border-radius: 6px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .donate-button:hover {
-            background: var(--deep-maroon);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(139, 75, 92, 0.3);
-        }
-
-        /* Main Content */
-        main {
-            margin-top: 70px;
-        }
-
-        .page {
-            display: none;
-            animation: fadeIn 0.6s ease-in-out;
-        }
-
-        .page.active {
-            display: block;
-        }
+        .page { display: none; animation: fadeIn 0.6s ease-in-out; }
+        .page.active { display: block; }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Hero Section */
         .hero {
             background: linear-gradient(135deg, var(--primary-maroon) 0%, var(--deep-maroon) 100%);
             color: white;
@@ -174,10 +129,7 @@
         .hero::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            top: 0; left: 0; right: 0; bottom: 0;
             background: radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
                         radial-gradient(circle at 80% 20%, rgba(255,255,255,0.08) 0%, transparent 50%);
         }
@@ -239,11 +191,8 @@
             border: 2px solid white;
         }
 
-        .cta-button.secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
+        .cta-button.secondary:hover { background: rgba(255, 255, 255, 0.1); }
 
-        /* Impact Stats */
         .impact-stats {
             background: var(--cream);
             padding: 4rem 0;
@@ -259,9 +208,7 @@
             text-align: center;
         }
 
-        .stat {
-            padding: 1.5rem;
-        }
+        .stat { padding: 1.5rem; }
 
         .stat-number {
             font-family: 'Spectral', serif;
@@ -280,16 +227,9 @@
             letter-spacing: 0.05em;
         }
 
-        /* Workshop Carousel */
-        .carousel-section {
-            padding: 5rem 0;
-            background: white;
-        }
+        .carousel-section { padding: 5rem 0; background: white; }
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
+        .section-header { text-align: center; margin-bottom: 3rem; }
 
         .section-header h2 {
             font-family: 'Spectral', serif;
@@ -314,15 +254,9 @@
             box-shadow: 0 10px 40px rgba(139, 75, 92, 0.15);
         }
 
-        .carousel-track {
-            display: flex;
-            transition: transform 0.5s ease;
-        }
+        .carousel-track { display: flex; transition: transform 0.5s ease; }
 
-        .carousel-slide {
-            min-width: 100%;
-            position: relative;
-        }
+        .carousel-slide { min-width: 100%; position: relative; }
 
         .carousel-slide img {
             width: 100%;
@@ -333,9 +267,7 @@
 
         .carousel-caption {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
+            bottom: 0; left: 0; right: 0;
             background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
             color: white;
             padding: 3rem 2rem 2rem;
@@ -348,10 +280,7 @@
             font-weight: 600;
         }
 
-        .carousel-caption p {
-            font-size: 1rem;
-            opacity: 0.9;
-        }
+        .carousel-caption p { font-size: 1rem; opacity: 0.9; }
 
         .carousel-nav {
             position: absolute;
@@ -367,8 +296,7 @@
         .carousel-btn {
             background: white;
             border: none;
-            width: 50px;
-            height: 50px;
+            width: 50px; height: 50px;
             border-radius: 50%;
             cursor: pointer;
             display: flex;
@@ -395,8 +323,7 @@
         }
 
         .carousel-dot {
-            width: 10px;
-            height: 10px;
+            width: 10px; height: 10px;
             border-radius: 50%;
             background: var(--light-gray);
             border: none;
@@ -410,7 +337,6 @@
             border-radius: 5px;
         }
 
-        /* Card Grid */
         .card-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -432,9 +358,7 @@
         .card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             height: 4px;
             background: linear-gradient(90deg, var(--primary-maroon), var(--dusty-rose));
             transform: scaleX(0);
@@ -442,10 +366,7 @@
             transition: transform 0.4s ease;
         }
 
-        .card:hover::before {
-            transform: scaleX(1);
-        }
-
+        .card:hover::before { transform: scaleX(1); }
         .card:hover {
             transform: translateY(-8px);
             box-shadow: 0 12px 35px rgba(139, 75, 92, 0.2);
@@ -459,11 +380,7 @@
             font-weight: 600;
         }
 
-        .card p {
-            color: var(--warm-gray);
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
-        }
+        .card p { color: var(--warm-gray); margin-bottom: 1.5rem; line-height: 1.7; }
 
         .card .button {
             background: var(--primary-maroon);
@@ -479,15 +396,9 @@
             font-size: 0.9rem;
         }
 
-        .card .button:hover {
-            background: var(--deep-maroon);
-            transform: translateX(5px);
-        }
+        .card .button:hover { background: var(--deep-maroon); transform: translateX(5px); }
 
-        /* Section Styling */
-        .section {
-            padding: 5rem 0;
-        }
+        .section { padding: 5rem 0; }
 
         .section h1 {
             font-family: 'Spectral', serif;
@@ -508,7 +419,6 @@
             line-height: 1.8;
         }
 
-        /* Team Section */
         .team-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -530,8 +440,7 @@
         }
 
         .team-photo {
-            width: 180px;
-            height: 180px;
+            width: 180px; height: 180px;
             border-radius: 50%;
             margin: 0 auto 1.5rem;
             object-fit: cover;
@@ -561,43 +470,25 @@
             margin-bottom: 1rem;
         }
 
-        .team-member p {
-            color: var(--warm-gray);
-            line-height: 1.7;
-            font-size: 0.95rem;
-        }
+        .team-member p { color: var(--warm-gray); line-height: 1.7; font-size: 0.95rem; }
 
-        /* Workshop Cards */
         .workshop-card {
             background: linear-gradient(135deg, white 0%, var(--cream) 100%);
             overflow: hidden;
         }
 
         .workshop-card img {
-            width: 100%;
+            width: calc(100% + 5rem);
             height: 220px;
             object-fit: cover;
             margin: -2.5rem -2.5rem 1.5rem -2.5rem;
             border-radius: 0;
         }
 
-        .workshop-card ul {
-            margin: 1.5rem 0;
-            padding-left: 1.5rem;
-            text-align: left;
-        }
+        .workshop-card ul { margin: 1.5rem 0; padding-left: 1.5rem; text-align: left; }
+        .workshop-card li { margin-bottom: 0.7rem; color: var(--warm-gray); line-height: 1.6; }
+        .workshop-card strong { color: var(--primary-maroon); }
 
-        .workshop-card li {
-            margin-bottom: 0.7rem;
-            color: var(--warm-gray);
-            line-height: 1.6;
-        }
-
-        .workshop-card strong {
-            color: var(--primary-maroon);
-        }
-
-        /* Extension Features */
         .extension-features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -627,12 +518,8 @@
             font-weight: 600;
         }
 
-        .feature p {
-            color: var(--warm-gray);
-            line-height: 1.7;
-        }
+        .feature p { color: var(--warm-gray); line-height: 1.7; }
 
-        /* Contact Form */
         .contact-form {
             background: var(--cream);
             padding: 3rem;
@@ -651,9 +538,7 @@
             text-align: center;
         }
 
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
+        .form-group { margin-bottom: 1.5rem; }
 
         .form-group label {
             display: block;
@@ -685,12 +570,8 @@
             box-shadow: 0 0 0 3px rgba(139, 75, 92, 0.1);
         }
 
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
+        .form-group textarea { resize: vertical; min-height: 120px; }
 
-        /* Info Box */
         .info-box {
             background: var(--cream);
             padding: 3rem;
@@ -707,22 +588,10 @@
             font-weight: 600;
         }
 
-        .info-box h2 {
-            font-size: 2rem;
-        }
+        .info-box h2 { font-size: 2rem; }
+        .info-box h3 { font-size: 1.5rem; margin-top: 2rem; }
+        .info-box p { color: var(--warm-gray); line-height: 1.8; margin-bottom: 1rem; }
 
-        .info-box h3 {
-            font-size: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .info-box p {
-            color: var(--warm-gray);
-            line-height: 1.8;
-            margin-bottom: 1rem;
-        }
-
-        /* Center Content */
         .center-content {
             text-align: center;
             margin: 4rem 0;
@@ -740,13 +609,8 @@
             font-weight: 600;
         }
 
-        .center-content p {
-            color: var(--warm-gray);
-            margin-bottom: 2rem;
-            font-size: 1.1rem;
-        }
+        .center-content p { color: var(--warm-gray); margin-bottom: 2rem; font-size: 1.1rem; }
 
-        /* Footer */
         footer {
             background: var(--charcoal);
             color: var(--cream);
@@ -779,60 +643,20 @@
             transition: color 0.3s ease;
         }
 
-        .footer-section a:hover {
-            color: var(--dusty-rose);
-        }
+        .footer-section a:hover { color: var(--dusty-rose); }
 
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.9rem;
-            opacity: 0.7;
-        }
-
-        /* Mobile Responsive */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .hero {
-                padding: 3rem 0 5rem;
-            }
-
-            .cta-group {
-                flex-direction: column;
-            }
-
-            .carousel-slide img {
-                height: 350px;
-            }
-            
-            .card-grid {
-                grid-template-columns: 1fr;
-                padding: 3rem 0;
-            }
-            
-            .section {
-                padding: 3rem 0;
-            }
-            
-            .container {
-                padding: 0 1rem;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .team-grid {
-                grid-template-columns: 1fr;
-            }
+            .nav-links { display: none; }
+            .hero { padding: 3rem 0 5rem; }
+            .cta-group { flex-direction: column; }
+            .carousel-slide img { height: 350px; }
+            .card-grid { grid-template-columns: 1fr; padding: 3rem 0; }
+            .section { padding: 3rem 0; }
+            .container { padding: 0 1rem; }
+            .stats-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .team-grid { grid-template-columns: 1fr; }
         }
 
-        /* Mobile Menu */
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -843,47 +667,36 @@
         }
 
         @media (max-width: 768px) {
-            .mobile-menu-btn {
-                display: block;
-            }
-            
+            .mobile-menu-btn { display: block; }
             .nav-links {
                 position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
+                top: 100%; left: 0; right: 0;
                 background: white;
                 flex-direction: column;
                 padding: 2rem;
                 box-shadow: 0 5px 20px rgba(139, 75, 92, 0.15);
                 gap: 1.5rem;
             }
-            
-            .nav-links.active {
-                display: flex;
-            }
+            .nav-links.active { display: flex; }
         }
 
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
     </style>
 </head>
 <body>
     <header>
         <nav class="container">
-            <a href="#" class="logo-container" onclick="showPage('home')">
+            <a href="#" class="logo-container" onclick="showPage('home'); return false;">
                 <div class="logo-icon"></div>
                 <span class="logo">CogniCode</span>
             </a>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#" onclick="showPage('home')">Home</a></li>
-                <li><a href="#" onclick="showPage('mindshield')">MindShield</a></li>
-                <li><a href="#" onclick="showPage('workshops')">Workshops</a></li>
+                <li><a href="#" onclick="showPage('home'); return false;">Home</a></li>
+                <li><a href="#" onclick="showPage('mindshield'); return false;">MindShield</a></li>
+                <li><a href="#" onclick="showPage('workshops'); return false;">Workshops</a></li>
                 <li><a href="https://cognotes.substack.com/" target="_blank">Blog</a></li>
-                <li><a href="#" onclick="showPage('about')">About</a></li>
-                <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+                <li><a href="#" onclick="showPage('about'); return false;">About</a></li>
+                <li><a href="#" onclick="showPage('contact'); return false;">Contact</a></li>
             </ul>
             <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
         </nav>
@@ -898,8 +711,8 @@
                         <h1>Empowering Youth in the Digital Age</h1>
                         <p>AI & Ethics Education</p>
                         <div class="cta-group">
-                            <a href="#" class="cta-button" onclick="showPage('workshops')">Explore Workshops</a>
-                            <a href="#" class="cta-button secondary" onclick="showPage('about')">Learn More</a>
+                            <a href="#" class="cta-button" onclick="showPage('workshops'); return false;">Explore Workshops</a>
+                            <a href="#" class="cta-button secondary" onclick="showPage('about'); return false;">Learn More</a>
                         </div>
                     </div>
                 </div>
@@ -916,28 +729,19 @@
                             <div class="stat-number">25+</div>
                             <div class="stat-label">Workshops Delivered</div>
                         </div>
-                        <!-- <div class="stat">
-                            <div class="stat-number">12</div>
-                            <div class="stat-label">Schools Partnered</div>
-                        </div> -->
-                        <!-- <div class="stat">
-                            <div class="stat-number">1000+</div>
-                            <div class="stat-label">Extension Users</div>
-                        </div> -->
                     </div>
                 </div>
             </div>
 
-            <!-- Workshop Carousel -->
+            <!-- Home Carousel -->
             <div class="carousel-section">
                 <div class="container">
                     <div class="section-header">
                         <h2>Our Workshops in Action</h2>
                         <p>See how we're empowering students across different age groups to build critical thinking and AI skills.</p>
                     </div>
-                    
                     <div class="carousel-container">
-                        <div class="carousel-track" id="carouselTrack">
+                        <div class="carousel-track" id="homeCarouselTrack">
                             <div class="carousel-slide">
                                 <img src="Image.png" alt="Community Workshop">
                                 <div class="carousel-caption">
@@ -967,58 +771,51 @@
                                 </div>
                             </div>
                         </div>
-                        
                         <div class="carousel-nav">
-                            <button class="carousel-btn" onclick="moveCarousel(-1)">‹</button>
-                            <button class="carousel-btn" onclick="moveCarousel(1)">›</button>
+                            <button class="carousel-btn" onclick="moveCarousel('home', -1)">&#8249;</button>
+                            <button class="carousel-btn" onclick="moveCarousel('home', 1)">&#8250;</button>
                         </div>
                     </div>
-                    
-                    <div class="carousel-dots" id="carouselDots"></div>
+                    <div class="carousel-dots" id="homeCarouselDots"></div>
                 </div>
             </div>
-            
+
             <div class="container">
                 <div class="card-grid">
                     <div class="card">
                         <h3>MindShield Extension</h3>
                         <p>Our browser extension helps people identify and resist manipulation techniques in digital content.</p>
-                        <a href="#" class="button" onclick="showPage('mindshield')">Learn More</a>
+                        <a href="#" class="button" onclick="showPage('mindshield'); return false;">Learn More</a>
                     </div>
                     <div class="card">
                         <h3>Educational Workshops</h3>
                         <p>Interactive sessions for elementary and middle school students to develop critical thinking skills. High schoolers can lead programs and earn volunteer hours!</p>
-                        <!-- <a href="#" class="button" onclick="showPage('workshops')">View Programs</a> -->
                     </div>
                     <div class="card">
                         <h3>Youth Leadership</h3>
                         <p>We empower young people to become ambassadors for digital wellbeing, leading workshops and shaping the future of ethical technology.</p>
-                        <a href="#" class="button" onclick="showPage('about')">Get Involved</a>
+                        <a href="#" class="button" onclick="showPage('about'); return false;">Get Involved</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- MindShield Extension Page -->
+        <!-- MindShield Page -->
         <section id="mindshield" class="page">
             <div class="container">
                 <div class="section">
                     <h1>MindShield Browser Extension</h1>
                     <p>An AI-powered Chrome Extension that detects manipulative design patterns and protects your cognitive freedom while browsing online.</p>
-                    
+
                     <div class="info-box">
                         <h2>MindShield Focus Areas</h2>
                         <p><strong>Education Over Restriction:</strong> Empowers users to identify manipulation tactics across all websites and provides techniques to avoid traps rather than just blocking access.</p>
-                        
                         <p><strong>Real-Time Learning:</strong> Encourages mindful navigation of challenging content while maintaining access to essential information and sites.</p>
-                        
                         <p><strong>Regaining Control:</strong> By understanding mechanisms such as infinite scroll, phantom notifications, and emotional triggers, users can reclaim the ability to choose how they interact with technology.</p>
-                        
                         <p><strong>Protecting Your Resources:</strong> Awareness of these tactics enables protection of your time, mental energy, and decision-making autonomy.</p>
-                        
                         <p><strong>Make Informed Choices:</strong> Recognizing manipulation patterns is the critical first step toward maintaining digital freedom and intentional browsing.</p>
                     </div>
-                    
+
                     <div class="extension-features">
                         <div class="feature">
                             <h4>Content Analysis</h4>
@@ -1033,7 +830,7 @@
                             <p>Monitor your critical thinking development over time with detailed analytics and personalized feedback.</p>
                         </div>
                     </div>
-                    
+
                     <div class="center-content">
                         <h3>Download From Chrome Web Store</h3>
                         <p>Start protecting your cognitive freedom with our free browser extension.</p>
@@ -1049,21 +846,8 @@
                 <div class="section">
                     <h1>Educational Workshops</h1>
                     <p>CogniCode offers engaging workshops designed to build digital literacy and technical skills (Python and AI/ML concepts). Our programs are tailored for the youth at different programming levels.</p>
-                    
-                    <!-- <div class="card-grid">
-                        <div class="card workshop-card">
-                            <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&h=400&fit=crop" alt="Elementary Workshop">
-                            <h3>🏫 Elementary School Program</h3>
-                            <p><strong>Grades:</strong> 3-5</p>
-                            <p><strong>Duration:</strong> 60-minute interactive sessions</p>
-                            <p><strong>Focus:</strong></p>
-                            <ul>
-                                <li>This interactive workshop uses games, stories, and group activities to help kids understand how AI can influence their thoughts and feelings — and how to stay mindful and in control online.</li>
-                            </ul>
-                            <p><strong>Format:</strong> Hands-on activities, group discussions, and real-world examples</p>
-                            <a href="#" class="button" onclick="showPage('contact')">Schedule Workshop</a>
-                        </div> -->
-                        
+
+                    <div class="card-grid">
                         <div class="card workshop-card">
                             <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=600&h=400&fit=crop" alt="Middle School Workshop">
                             <h3>Workshops</h3>
@@ -1074,9 +858,9 @@
                                 <li>Students explore how AI systems work and how they shape attention and emotion through hands-on experiments.</li>
                             </ul>
                             <p><strong>Format:</strong> Hands-on activities, group discussions, and real-world examples</p>
-                            <a href="#" class="button" onclick="showPage('contact')">Schedule Workshop</a>
+                            <a href="#" class="button" onclick="showPage('contact'); return false;">Schedule Workshop</a>
                         </div>
-                        
+
                         <div class="card workshop-card">
                             <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop" alt="High School Ambassadors">
                             <h3>High School Chapter Program</h3>
@@ -1086,19 +870,21 @@
                                 <li>High school students can earn verified volunteer hours by leading workshops, mentoring younger peers, and helping build tools like MindShield or contributing to our Substack CogniNotes!</li>
                             </ul>
                             <p><strong>Application Process:</strong> Send us an email!</p>
-                            <a href="#" class="button" onclick="showPage('contact')">Apply Now</a>
+                            <a href="#" class="button" onclick="showPage('contact'); return false;">Apply Now</a>
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <!-- Workshops Carousel -->
             <div class="carousel-section">
                 <div class="container">
                     <div class="section-header">
                         <h2>Our Workshops in Action</h2>
                         <p>See how we're empowering students across different age groups to build critical thinking and AI skills.</p>
                     </div>
-                    
                     <div class="carousel-container">
-                        <div class="carousel-track" id="carouselTrack">
+                        <div class="carousel-track" id="workshopsCarouselTrack">
                             <div class="carousel-slide">
                                 <img src="Image.png" alt="Community Workshop">
                                 <div class="carousel-caption">
@@ -1128,16 +914,13 @@
                                 </div>
                             </div>
                         </div>
-                        
                         <div class="carousel-nav">
-                            <button class="carousel-btn" onclick="moveCarousel(-1)">‹</button>
-                            <button class="carousel-btn" onclick="moveCarousel(1)">›</button>
+                            <button class="carousel-btn" onclick="moveCarousel('workshops', -1)">&#8249;</button>
+                            <button class="carousel-btn" onclick="moveCarousel('workshops', 1)">&#8250;</button>
                         </div>
                     </div>
-                    
-                    <div class="carousel-dots" id="carouselDots"></div>
+                    <div class="carousel-dots" id="workshopsCarouselDots"></div>
                 </div>
-            </div>
             </div>
         </section>
 
@@ -1147,59 +930,47 @@
                 <div class="section">
                     <h1>About CogniCode</h1>
                     <p>CogniCode is a youth-led initiative defending cognitive liberty in the age of AI. We teach not just how AI works, but also how it influences attention, behavior, and decision-making so young people can protect their cognitive autonomy and participate meaningfully in a democratic society transformed by technology.</p>
-                    
+
                     <div class="info-box">
                         <h2>Our Mission</h2>
                         <p>Use hands-on experiments and Python to explain AI concepts in the context of ethics.</p>
                     </div>
-                    
+
                     <div class="info-box">
                         <h2>Our Approach</h2>
                         <p>Rather than promoting fear or avoidance of AI technology, we focus on building genuine understanding and agency. Our programs emphasize hands-on learning, critical thinking development, and ethical reasoning.</p>
-                        
                         <h3>Core Principles</h3>
                         <p><strong>Education Over Restriction:</strong> We believe young people need to understand the technology they are growing up with.</p>
-                        
                         <p><strong>Practical Agency:</strong> Our goal is to develop real-world skills that students can apply immediately in their digital lives.</p>
-                        
                         <p><strong>Ethical Technology Use:</strong> We promote approaches to AI that enhance rather than replace human capabilities and judgment.</p>
-                        
                         <p><strong>Community-Centered:</strong> We work in community spaces to create supportive environments for digital wellbeing.</p>
                     </div>
-                    
+
                     <div class="info-box">
                         <h2>Meet Our Team</h2>
                         <p>CogniCode is led by passionate high schoolers committed to responsible AI and its direct effects on people.</p>
                     </div>
-                    
+
                     <div class="team-grid">
                         <div class="team-member">
-                            <div class="team-photo">👤</div>
+                            <div class="team-photo">&#128100;</div>
                             <h3>Shivanshi Dutt</h3>
-                            <div class="role">Founder & Director</div>
-                            <p>Shivanshi Dutt is the founder of CogniCode, a youth-led initiative focused on defending cognitive liberty in the age of artificial intelligence. Passionate about the intersection of technology and public policy, Shivanshi Dutt is especially interested in how AI systems influence learning, decision-making, and democratic participation.
-As a student leader and writer on tech policy, she launched CogniCode after recognizing that many young people use AI tools daily without understanding how these systems shape attention, behavior, and thought. Through workshops, research, and policy advocacy, she works to equip students with the technical knowledge and critical thinking skills needed to remain autonomous and informed in an increasingly algorithmic world.</p>
+                            <div class="role">Founder &amp; Director</div>
+                            <p>Shivanshi Dutt is the founder of CogniCode, a youth-led initiative focused on defending cognitive liberty in the age of artificial intelligence. Passionate about the intersection of technology and public policy, she is especially interested in how AI systems influence learning, decision-making, and democratic participation. Through workshops, research, and policy advocacy, she works to equip students with the technical knowledge and critical thinking skills needed to remain autonomous and informed in an increasingly algorithmic world.</p>
                         </div>
-                        
+
                         <div class="team-member">
-                            <div class="team-photo">👤</div>
+                            <div class="team-photo">&#128100;</div>
                             <h3>Katelyn Lara</h3>
                             <div class="role">Outreach Coordinator</div>
                             <p>Katelyn Lara serves as Outreach Coordinator for CogniCode, where she leads student outreach efforts. Passionate about equitable access to technology education, she works to ensure that conversations about AI and cognitive autonomy reach diverse student communities.</p>
                         </div>
-                        
-                        <!-- <div class="team-member">
-                            <div class="team-photo">👤</div>
-                            <h3>Team Member Name</h3>
-                            <div class="role">Technology Lead</div>
-                            <p>Brief bio about this team member's technical expertise, work on MindShield, and commitment to ethical AI development.</p>
-                        </div> -->
                     </div>
-                    
+
                     <div class="center-content">
                         <h3>Join Our Mission</h3>
                         <p>Whether you're an educator, parent, student, or community leader, there are many ways to get involved with CogniCode's work.</p>
-                        <a href="#" class="cta-button" onclick="showPage('contact')">Contact Us</a>
+                        <a href="#" class="cta-button" onclick="showPage('contact'); return false;">Contact Us</a>
                     </div>
                 </div>
             </div>
@@ -1211,7 +982,7 @@ As a student leader and writer on tech policy, she launched CogniCode after reco
                 <div class="section">
                     <h1>Get in Touch</h1>
                     <p>Have questions about our workshops, extension, or want to partner with us? Feel free to reach out to us!</p>
-                    
+
                     <div class="contact-form">
                         <h2>Send Us a Message</h2>
                         <form id="contactForm">
@@ -1219,17 +990,14 @@ As a student leader and writer on tech policy, she launched CogniCode after reco
                                 <label for="name">Name *</label>
                                 <input type="text" id="name" name="name" required>
                             </div>
-                            
                             <div class="form-group">
                                 <label for="email">Email *</label>
                                 <input type="email" id="email" name="email" required>
                             </div>
-                            
                             <div class="form-group">
                                 <label for="organization">Organization (Optional)</label>
                                 <input type="text" id="organization" name="organization">
                             </div>
-                            
                             <div class="form-group">
                                 <label for="interest">I'm interested in: *</label>
                                 <select id="interest" name="interest" required>
@@ -1241,19 +1009,17 @@ As a student leader and writer on tech policy, she launched CogniCode after reco
                                     <option value="other">Other</option>
                                 </select>
                             </div>
-                            
                             <div class="form-group">
                                 <label for="message">Message *</label>
                                 <textarea id="message" name="message" required></textarea>
                             </div>
-                            
                             <button type="submit" class="cta-button" style="width: 100%;">Send Message</button>
                         </form>
                     </div>
-                    
+
                     <div class="info-box">
                         <h2>Other Ways to Connect</h2>
-                        <p><strong>Email:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="92f6e7e6e6e1fafbe4f3fce1fafbd2f5fff3fbfebcf1fdff">[email&#160;protected]</a></p>                        
+                        <p><strong>Email:</strong> cognicode.org@gmail.com</p>
                         <p><strong>Instagram:</strong> @cogni.code</p>
                         <p><strong>CogniNotes:</strong> <a href="https://cogninotes.substack.com" target="_blank" style="color: var(--primary-maroon); text-decoration: underline;">CogniNotes on Substack</a></p>
                     </div>
@@ -1271,114 +1037,117 @@ As a student leader and writer on tech policy, she launched CogniCode after reco
                 </div>
                 <div class="footer-section">
                     <h4>Quick Links</h4>
-                    <a href="#" onclick="showPage('home')">Home</a>
-                    <a href="#" onclick="showPage('mindshield')">MindShield</a>
-                    <a href="#" onclick="showPage('workshops')">Workshops</a>
+                    <a href="#" onclick="showPage('home'); return false;">Home</a>
+                    <a href="#" onclick="showPage('mindshield'); return false;">MindShield</a>
+                    <a href="#" onclick="showPage('workshops'); return false;">Workshops</a>
                     <a href="https://cogninotes.substack.com" target="_blank">CogniNotes</a>
                 </div>
                 <div class="footer-section">
                     <h4>Connect</h4>
-                    <a href="#" onclick="showPage('about')">About Us</a>
-                    <a href="#" onclick="showPage('contact')">Contact</a>
+                    <a href="#" onclick="showPage('about'); return false;">About Us</a>
+                    <a href="#" onclick="showPage('contact'); return false;">Contact</a>
                     <a href="https://www.instagram.com/cogni.code/" target="_blank">Instagram</a>
-                    <a href="/cdn-cgi/l/email-protection#4d293839393e25243b2c233e25240d2a202c2421632e2220">Email Us</a>
+                    <a href="mailto:cognicode.org@gmail.com">Email Us</a>
                 </div>
             </div>
-            <!-- <div class="footer-bottom">
-                <p>&copy; 2025 CogniCode. Building a future of cognitive freedom.</p>
-            </div> -->
         </div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
         // Page Navigation
         function showPage(pageId) {
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => page.classList.remove('active'));
-            
-            const selectedPage = document.getElementById(pageId);
-            if (selectedPage) {
-                selectedPage.classList.add('active');
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            var page = document.getElementById(pageId);
+            if (page) {
+                page.classList.add('active');
                 window.scrollTo(0, 0);
             }
-            
-            const navLinks = document.getElementById('navLinks');
-            navLinks.classList.remove('active');
+            document.getElementById('navLinks').classList.remove('active');
         }
 
-        // Mobile menu toggle
         function toggleMobileMenu() {
-            const navLinks = document.getElementById('navLinks');
-            navLinks.classList.toggle('active');
+            document.getElementById('navLinks').classList.toggle('active');
         }
 
-        // Carousel functionality
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.carousel-slide');
-        const totalSlides = slides.length;
+        // Carousel — separate state per named carousel
+        var carousels = {
+            home:      { current: 0, total: 0 },
+            workshops: { current: 0, total: 0 }
+        };
 
-        function initCarousel() {
-            const dotsContainer = document.getElementById('carouselDots');
-            for (let i = 0; i < totalSlides; i++) {
-                const dot = document.createElement('button');
-                dot.classList.add('carousel-dot');
-                if (i === 0) dot.classList.add('active');
-                dot.onclick = () => goToSlide(i);
-                dotsContainer.appendChild(dot);
+        function initCarousel(name) {
+            var track = document.getElementById(name + 'CarouselTrack');
+            var dotsEl = document.getElementById(name + 'CarouselDots');
+            if (!track || !dotsEl) return;
+
+            var slides = track.querySelectorAll('.carousel-slide');
+            carousels[name].total = slides.length;
+
+            dotsEl.innerHTML = '';
+            for (var i = 0; i < slides.length; i++) {
+                (function(idx) {
+                    var dot = document.createElement('button');
+                    dot.className = 'carousel-dot' + (idx === 0 ? ' active' : '');
+                    dot.onclick = function() { goToSlide(name, idx); };
+                    dotsEl.appendChild(dot);
+                })(i);
             }
+
+            setInterval((function(n) {
+                return function() { moveCarousel(n, 1); };
+            })(name), 5000);
         }
 
-        function updateCarousel() {
-            const track = document.getElementById('carouselTrack');
-            track.style.transform = `translateX(-${currentSlide * 100}%)`;
-            
-            const dots = document.querySelectorAll('.carousel-dot');
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentSlide);
+        function updateCarousel(name) {
+            var track = document.getElementById(name + 'CarouselTrack');
+            var dotsEl = document.getElementById(name + 'CarouselDots');
+            if (!track) return;
+            track.style.transform = 'translateX(-' + (carousels[name].current * 100) + '%)';
+            var dots = dotsEl.querySelectorAll('.carousel-dot');
+            dots.forEach(function(dot, idx) {
+                dot.classList.toggle('active', idx === carousels[name].current);
             });
         }
 
-        function moveCarousel(direction) {
-            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
-            updateCarousel();
+        function moveCarousel(name, direction) {
+            var total = carousels[name].total;
+            carousels[name].current = (carousels[name].current + direction + total) % total;
+            updateCarousel(name);
         }
 
-        function goToSlide(index) {
-            currentSlide = index;
-            updateCarousel();
+        function goToSlide(name, index) {
+            carousels[name].current = index;
+            updateCarousel(name);
         }
 
-        // Auto-advance carousel
-        setInterval(() => {
-            moveCarousel(1);
-        }, 5000);
-
-        // Form submission
+        // Init on load
         document.addEventListener('DOMContentLoaded', function() {
-            initCarousel();
-            
-            const contactForm = document.getElementById('contactForm');
-            if (contactForm) {
-                contactForm.addEventListener('submit', function(e) {
+            initCarousel('home');
+            initCarousel('workshops');
+
+            var form = document.getElementById('contactForm');
+            if (form) {
+                form.addEventListener('submit', function(e) {
                     e.preventDefault();
-                    
-                    const name = document.getElementById('name').value;
-                    const email = document.getElementById('email').value;
-                    const message = document.getElementById('message').value;
-                    
+                    var name = document.getElementById('name').value;
+                    var email = document.getElementById('email').value;
+                    var message = document.getElementById('message').value;
                     if (name && email && message) {
-                        alert('Thank you for your message! We\'ll get back to you within 2-3 business days.');
-                        contactForm.reset();
+                        alert("Thank you for your message! We'll get back to you within 2-3 business days.");
+                        form.reset();
                     }
                 });
             }
         });
 
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const nav = document.querySelector('nav');
-            const navLinks = document.getElementById('navLinks');
-            if (!nav.contains(event.target)) {
+        // Close mobile menu on outside click
+        document.addEventListener('click', function(e) {
+            var nav = document.querySelector('nav');
+            var navLinks = document.getElementById('navLinks');
+            if (nav && !nav.contains(e.target)) {
                 navLinks.classList.remove('active');
             }
         });
+    </script>
+</body>
+</html>
