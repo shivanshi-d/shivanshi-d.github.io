@@ -64,7 +64,6 @@
             position: relative;
         }
 
-
         .logo {
             font-family: 'Spectral', serif;
             font-size: 1.5rem;
@@ -112,7 +111,10 @@
         }
 
         .hero {
-            background: linear-gradient(135deg, var(--primary-maroon) 0%, var(--deep-maroon) 100%);
+            /* UPDATED: image background with maroon overlay */
+            background: linear-gradient(rgba(107, 52, 71, 0.7), rgba(107, 52, 71, 0.7)), url('IMG_1946.jpeg');
+            background-size: cover;
+            background-position: center;
             color: white;
             padding: 6rem 0 8rem;
             position: relative;
@@ -432,18 +434,23 @@
             box-shadow: 0 10px 30px rgba(139, 75, 92, 0.15);
         }
 
+        /* UPDATED: team-photo is now just a circular frame */
         .team-photo {
-            width: 180px; height: 180px;
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
             margin: 0 auto 1.5rem;
-            object-fit: cover;
             border: 4px solid var(--primary-maroon);
+            overflow: hidden;
             background: var(--light-gray);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: white;
+        }
+
+        /* UPDATED: image fills the circular frame */
+        .team-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
 
         .team-member h3 {
@@ -1004,10 +1011,12 @@
 
                     <div class="team-grid">
                         <div class="team-member">
-                            <div class="team-photo"><img src="710427A9-55E3-40A9-8E71-792696C47BC7_1_105_c.jpeg" alt="Shivanshi Dutt" /></div>
-                            <h3>Shivanshi Dutt</h3>
+                            <div class="team-photo">
+                                <img src="710427A9-55E3-40A9-8E71-792696C47BC7_1_105_c.jpeg" alt="Founder photo">
+                            </div>
+                            <h3>[]</h3>
                             <div class="role">Founder &amp; Director</div>
-                            <p>Shivanshi Dutt is the founder of CogniCode, a youth-led initiative focused on defending cognitive liberty in the age of artificial intelligence. Passionate about AI-human interaction, she is especially interested in how AI systems influence learning, decision-making, and democratic participation. Through workshops, she works to equip students with the technical knowledge and critical thinking skills needed to remain autonomous and informed in an increasingly algorithmic world.</p>
+                            <p>[] is the founder of CogniCode, a youth-led initiative focused on defending cognitive liberty in the age of artificial intelligence. Passionate about AI-human interaction, she is especially interested in how AI systems influence learning, decision-making, and democratic participation. Through workshops, she works to equip students with the technical knowledge and critical thinking skills needed to remain autonomous and informed in an increasingly algorithmic world.</p>
                         </div>
                     </div>
 
@@ -1063,7 +1072,6 @@
 
                     <div class="info-box">
                         <h2>Other Ways to Connect</h2>
-                        <p><strong>Email:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f5969a929b9c969a9190db9a8792b59298949c99db969a98">[email&#160;protected]</a></p>
                         <p><strong>Instagram:</strong> @cogni.code</p>
                         <p><strong>Tiktok:</strong> @cogni.code</p>
                         <p><strong>CogniNotes:</strong> <a href="https://cogninotes.substack.com" target="_blank" style="color: var(--primary-maroon); text-decoration: underline;">CogniNotes on Substack</a></p>
@@ -1092,13 +1100,12 @@
                     <a href="#" onclick="showPage('about'); return false;">About Us</a>
                     <a href="#" onclick="showPage('contact'); return false;">Contact</a>
                     <a href="https://www.instagram.com/cogni.code/" target="_blank">Instagram</a>
-                    <a href="/cdn-cgi/l/email-protection#e3808c848d8a808c8786cd8c9184a3848e828a8fcd808c8e">Email Us</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
         // Page Navigation
         function showPage(pageId) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
